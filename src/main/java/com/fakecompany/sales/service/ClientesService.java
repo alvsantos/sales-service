@@ -17,8 +17,9 @@ public class ClientesService {
         if (cliente.getDataNascimento().isBefore(LocalDate.now().minusYears(18))) {
             return clientesRepository.save(cliente);
         } else {
-            throw new Exception("CLiente menor de 18 anos.");
+            throw new Exception("Cliente menor de 18 anos.");
         }
 
     }
+
 }
