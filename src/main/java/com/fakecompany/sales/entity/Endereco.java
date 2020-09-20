@@ -1,36 +1,36 @@
 package com.fakecompany.sales.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Endereco {
     @Id
-    @JsonProperty
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String id;
 
-    @JsonProperty
     private String rua;
 
-    @JsonProperty
     private String numero;
 
-    @JsonProperty
     private String cep;
 
-    @JsonProperty
     private String bairro;
 
-    @JsonProperty
     private String cidade;
 
-    @JsonProperty
     private String pais;
 
-    @JsonProperty
     private String estado;
 }

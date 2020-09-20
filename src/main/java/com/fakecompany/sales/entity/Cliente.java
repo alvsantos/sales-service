@@ -1,41 +1,39 @@
 package com.fakecompany.sales.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Cliente {
     @Id
-    @JsonProperty
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid",
+            strategy = "uuid")
     private String id;
 
-    @JsonProperty
     private String nome;
 
-    @JsonProperty
     private String email;
 
-    @JsonProperty
     @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<Endereco> enderecos;
 
-    @JsonProperty
     private String telefone;
 
-    @JsonProperty
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
-    @JsonProperty
     private String cpf;
 }
